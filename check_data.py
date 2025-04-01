@@ -13,9 +13,10 @@ def img_check(path):
 
     return img_list # len(img_list)
 
-
-# print("Images for training: ", img_check(path_train))
-# print("Images for testing: ", img_check(path_test))
+img_name_list_train = img_check(path_train)
+img_name_list_test = img_check(path_test)
+# print("Images for training: ", img_name_list_train)
+# print("Images for testing: ", img_name_list_test)
 """
 Images for training:  12601
 Images for testing:  5410

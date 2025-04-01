@@ -2,3 +2,4 @@
 .python-version
 test*.py
 datasets/
+__pycache__/
