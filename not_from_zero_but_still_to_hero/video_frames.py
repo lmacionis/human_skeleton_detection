@@ -1,18 +1,17 @@
 import cv2
  
-cam = cv2.VideoCapture('./not_from_zero_but_still_to_hero/datasets/video_org.mp4')
+video = cv2.VideoCapture('./not_from_zero_but_still_to_hero/datasets/video_org.mp4')
  
-currentframe = 0
+current_frame = 0
   
 while(True): 
       
     # reading from frame 
-    ret,frame = cam.read()
-    print(ret)
+    success, frame = video.read()
   
-    if ret: 
+    if success: 
         # if video is still left continue creating images 
-        name = './not_from_zero_but_still_to_hero/datasets/frames/frame' + str(currentframe) + '.jpg'
+        name = './not_from_zero_but_still_to_hero/datasets/frames/frame' + str(current_frame) + '.jpg'
         print ('Creating...' + name) 
   
         # writing the extracted images 
@@ -20,10 +19,10 @@ while(True):
   
         # increasing counter so that it will 
         # show how many frames are created 
-        currentframe += 1
+        current_frame += 1
     else: 
         break
   
 # Release all space and windows once done 
-cam.release() 
+video.release() 
 cv2.destroyAllWindows() 
