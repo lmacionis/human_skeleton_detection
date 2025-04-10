@@ -1,8 +1,8 @@
 from torchvision import datasets, transforms
 import torch
+from check_data import path
 
 
-path = "./datasets/human_action_recognition"
 N_CHANNELS = 3
 
 dataset = datasets.ImageFolder(path, transform=transforms.ToTensor())
