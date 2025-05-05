@@ -1,4 +1,5 @@
 from torch.utils.data import DataLoader, Dataset
+import torch
 import os
 from check_data import *
 from torchvision.io import read_image
@@ -23,10 +24,18 @@ class CustomDataset(Dataset):
         coord_path = os.path.join(self.coord_dir, self.img_coord[idx])
         image = read_image(img_path)
         # label = self.img_labels[idx]
-        
+
         with open(coord_path) as f:
             coord = f.readline()
             f.close()
+        
+        if len(coord) == 0:
+            coord = "0 " * 8
+
+        # Converts string of coordinates into tensor of coordinates
+        coord = coord.strip().split()
+        coord = [float(x) for x in coord]
+        coord = torch.tensor(coord, dtype=torch.float32)
 
         if self.transform:
             image = self.transform(image)
@@ -38,5 +47,7 @@ class CustomDataset(Dataset):
 
 # dataset = CustomDataset(path_test, path_test_coord)
 # sample_image, sample_coord = dataset[0]
-# print("Image tensor:", sample_image)
-# print("Coordinate:", sample_coord)
+# print("Image tensor:", sample_image, type(sample_image))
+# print("Coordinate:", sample_coord, type(sample_coord))
+# nepamirsti sukti ir koordinaciu
+# koordinate transformuoti i img, su 0 ir 1
