@@ -3,13 +3,13 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
-path_train = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/train/images"
-path_train_coord = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/train/labels"
-path_test = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/test/images"
-path_test_coord = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/test/labels"
-path_valid = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/valid/images"
-path_valid_coord = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch/valid/labels"
-path = "./not_from_zero_but_still_to_hero/datasets/Head.v2i.yolov5pytorch"
+path_train = "./model/datasets/Head.v2i.yolov5pytorch/train/images"
+path_train_coord = "./model/datasets/Head.v2i.yolov5pytorch/train/labels"
+path_test = "./model/datasets/Head.v2i.yolov5pytorch/test/images"
+path_test_coord = "./model/datasets/Head.v2i.yolov5pytorch/test/labels"
+path_valid = "./model/datasets/Head.v2i.yolov5pytorch/valid/images"
+path_valid_coord = "./model/datasets/Head.v2i.yolov5pytorch/valid/labels"
+path = "./model/datasets/Head.v2i.yolov5pytorch"
 
 
 def img_check(path):

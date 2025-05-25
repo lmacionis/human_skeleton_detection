@@ -1,4 +1,6 @@
-def save_model(unet_model, optimizer, epoch, train_losses, train_accuracies, val_losses, val_accuracies, path="/model.pth"):
+import torch
+
+def save_model(unet_model, optimizer, epoch, train_losses, train_accuracies, val_losses, val_accuracies, path="./model//model.pth"):
     torch.save({
         'epoch': epoch,
         'model_state_dict': unet_model.state_dict(),

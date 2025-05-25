@@ -116,7 +116,6 @@ def train_model(unet_model, train_dataloader, valid_dataloader, criterion, optim
         correct = 0
         total = 0
 
-        # all_img_predictions, all_classification_map = [], []
         for images, classification_map in valid_dataloader:
             images, classification_map = images.to(device), classification_map.to(device)
             classification_map = classification_map.unsqueeze(1)
@@ -142,7 +141,7 @@ def train_model(unet_model, train_dataloader, valid_dataloader, criterion, optim
     return train_losses, train_accuracies, val_losses, val_accuracies
 
 train_losses, train_accuracies, val_losses, val_accuracies = train_model(unet_model, train_dataloader, valid_dataloader, criterion, optimizer)
-# save_model(unet_model=unet_model, optimizer=optimizer, epoch=20, train_losses=train_losses, train_accuracies=train_accuracies, val_losses=val_losses, val_accuracies=val_accuracies, path="/content/sample_data/model.pth")
+save_model(unet_model=unet_model, optimizer=optimizer, epoch=20, train_losses=train_losses, train_accuracies=train_accuracies, val_losses=val_losses, val_accuracies=val_accuracies, path="./model//model.pth")
 
 
 plt.figure(figsize=(12, 5))
@@ -175,9 +174,9 @@ def test_model(unet_model, test_loader):
 
     with torch.no_grad():
         for batch_idx, (images, classification_map) in enumerate(tqdm(test_loader, desc="Testing")):
-            # Perkeliame duomenis į GPU arba CPU
             images, classification_map = images.to(device), classification_map.to(device)
             classification_map = classification_map.unsqueeze(1)
+
             features = feature_extractor(images)["layer4"]
             outputs_image = unet_model(features)
             predicted = (outputs_image > 0.1).float()
@@ -215,6 +214,7 @@ def test_model(unet_model, test_loader):
 
     plt.figure(figsize=(10, 5))
     plt.subplot(1, 2, 1)
+    # Selects first image, reorders to fit matplotlib, puts in cpu since np arrays does not work on gpu, creates numpy arrays and dnormalize to use as an image 
     img = images[0].permute(1, 2, 0).cpu().numpy() * np.array(std) + np.array(mean)
     img = np.clip(img, 0, 1)
     plt.imshow(img)
