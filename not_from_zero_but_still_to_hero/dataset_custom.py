@@ -14,8 +14,8 @@ class CustomDataset(Dataset):
         self.img_dir = img_dir
         self.coord_dir = coord_dir
         self.transform = transform
-        
-        # we need sorted beacause, os.listdir reades directory according to 
+
+        # we need sorted beacause, os.listdir reades directory according to
         # os filesystem implementation, it is not the same as you see it in dir tree.
         self.img_coord = sorted(os.listdir(coord_dir))    # list of coordinate file names
         self.img_labels = sorted(os.listdir(img_dir))     # list of image names
@@ -37,18 +37,17 @@ class CustomDataset(Dataset):
         coord = [float(x) for x in coord]
         if len(coord) != 8:
             coord = [0.0] * 8
-        
+
         x, y = coord[1], coord[2]
         # Scaling coordinates in order to create clasification map since yolov5 from roboflow gave normalised coordinates
-        x_pixel = int(x * 20)
-        y_pixel = int(y * 20)
-        # print((x_pixel, y_pixel))
+        x_pixel = int(x * 40)
+        y_pixel = int(y * 40)
 
-        classification_map = np.zeros((20, 20), dtype=np.float32)     # Ground Truth Mask
+        classification_map = np.zeros((40, 40), dtype=np.float32)     # Ground Truth Mask
+        # Expanding ground truth mask for better detection.
         for i in range(x_pixel-5, x_pixel+5):
             for j in range(y_pixel-5, y_pixel+5):
                 classification_map[j, i] = 1
-        # classification_map[x_pixel, y_pixel] = 1
         classification_map = torch.tensor(classification_map, dtype=torch.float32)
 
         """Leaving as exmple for future"""
@@ -66,9 +65,9 @@ class CustomDataset(Dataset):
 
         if self.transform:
             image = self.transform(image)
-        
+
         return image, classification_map
-        
+
 
 if __name__=="__main__":
     dataset = CustomDataset(path_test, path_test_coord)
