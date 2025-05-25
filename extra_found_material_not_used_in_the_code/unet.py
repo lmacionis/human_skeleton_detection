@@ -42,6 +42,7 @@ class UpSample(nn.Module):
         # if x1.size()[2:] != x2.size()[2:]:
         # # Crop x2 to match size of x1.
         #     x2 = crop_tensor(x2, x1)
+        # print(x1, x2)
         
         x = torch.cat([x1, x2], 1)  # apjungia
         return self.conv(x)

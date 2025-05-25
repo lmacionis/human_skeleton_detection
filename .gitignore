@@ -4,3 +4,4 @@ test*.py
 datasets/
 __pycache__/
 .vscode/
+amd*
