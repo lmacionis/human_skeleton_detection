@@ -33,9 +33,9 @@ test_dataset = CustomDataset(path_test, path_test_coord, transform=transform)
 valid_dataset = CustomDataset(path_valid, path_valid_coord, transform=transform)
 
 # Trained on batch size 16
-train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=8, shuffle=True)   # num_workers -> speed up trainin process by the use of cpu, size depends from cpu cores
-test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=8, shuffle=True)
-valid_dataloader = torch.utils.data.DataLoader(valid_dataset, batch_size=8, shuffle=True)
+train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=16, shuffle=True)   # num_workers -> speed up trainin process by the use of cpu, size depends from cpu cores
+test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=16, shuffle=True)
+valid_dataloader = torch.utils.data.DataLoader(valid_dataset, batch_size=16, shuffle=True)
 
 # train_iamge_shape, classification_map = next(iter(train_dataloader))       # takes only one image at a time and unpacks into variables
 # # For testing: image after transformations with clasification map / ground truth mask
@@ -141,7 +141,7 @@ def train_model(unet_model, train_dataloader, valid_dataloader, criterion, optim
     return train_losses, train_accuracies, val_losses, val_accuracies
 
 train_losses, train_accuracies, val_losses, val_accuracies = train_model(unet_model, train_dataloader, valid_dataloader, criterion, optimizer)
-save_model(unet_model=unet_model, optimizer=optimizer, epoch=20, train_losses=train_losses, train_accuracies=train_accuracies, val_losses=val_losses, val_accuracies=val_accuracies, path="./model//model.pth")
+# save_model(unet_model=unet_model, optimizer=optimizer, epoch=20, train_losses=train_losses, train_accuracies=train_accuracies, val_losses=val_losses, val_accuracies=val_accuracies, path="./model//model.pth")
 
 
 plt.figure(figsize=(12, 5))

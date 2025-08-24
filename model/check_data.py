@@ -3,13 +3,13 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
-path_train = "./model/datasets/Head.v2i.yolov5pytorch/train/images"
-path_train_coord = "./model/datasets/Head.v2i.yolov5pytorch/train/labels"
-path_test = "./model/datasets/Head.v2i.yolov5pytorch/test/images"
-path_test_coord = "./model/datasets/Head.v2i.yolov5pytorch/test/labels"
-path_valid = "./model/datasets/Head.v2i.yolov5pytorch/valid/images"
-path_valid_coord = "./model/datasets/Head.v2i.yolov5pytorch/valid/labels"
-path = "./model/datasets/Head.v2i.yolov5pytorch"
+path_train = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/train/images"
+path_train_coord = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/train/labels"
+path_test = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/test/images"
+path_test_coord = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/test/labels"
+path_valid = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/valid/images"
+path_valid_coord = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch/valid/labels"
+path = "human_skeleton_detection/model/datasets/Head.v2i.yolov5pytorch"
 
 
 def img_check(path):

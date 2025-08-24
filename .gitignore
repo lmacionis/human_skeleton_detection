@@ -5,3 +5,5 @@ datasets/
 __pycache__/
 .vscode/
 amd*
+data/
+test_nn.py
